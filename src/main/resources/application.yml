@@ -1,1 +1,2 @@
-greeting: Jeg er så glad i små dyr!
+# Add properties here and inject them into the code with @Value("${parameter-name}")
+# parameter-name: example text

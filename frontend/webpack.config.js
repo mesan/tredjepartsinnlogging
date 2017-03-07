@@ -13,12 +13,15 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'es2016', 'es2017']
                 }
-            },
-            {
-                test: /.handlebars$/,
-                loader:'handlebars-loader',
-                exclude: /node_modules/
             }
         ]
     },
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:4567/',
+                secure: false
+            }
+        }
+    }
 };

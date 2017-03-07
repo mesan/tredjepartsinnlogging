@@ -1,4 +1,31 @@
 body, html {
     height: 100%;
     font-family: sans-serif;
+    background: whitesmoke;
 }
+
+.user, .secret {
+    display: none;
+}
+
+.header {
+    margin-bottom: 5rem;
+}
+
+.login-form {
+    margin-bottom: 0;
+}
+
+#logged-in-user {
+    font-weight: bold;
+    margin-right: 3rem;
+}
+
+.content {
+    border-radius: 1rem;
+    padding: 3rem;
+    background: white;
+    width: 80rem;
+    margin: 5rem auto;
+}
+
