@@ -62,7 +62,7 @@
                         </goals>
                         <configuration>
                             <workingDirectory>frontend</workingDirectory>
-                            <executable>node_modules/.bin/webpack</executable>
+                            <executable>node_modules${file.separator}.bin${file.separator}webpack</executable>
                         </configuration>
                     </execution>
                 </executions>
