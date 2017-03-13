@@ -42,3 +42,10 @@ export const logout = () => {
     document.cookie = 'JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
     fetch('/api/logout', {credentials: 'include', method: 'POST'})
 }
+
+export const verify = token =>
+    fetch('/api/verify', {credentials: 'include', method: 'POST', body: token})
+        .then(res => {
+            if (res.status === 204)
+                getUser()
+        })

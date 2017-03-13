@@ -3,7 +3,7 @@ import 'file?name=[name].[ext]!./core.css'
 import 'babel-polyfill'
 import Rx from 'rx'
 
-import {userSubject, secretSubject, login, logout, saveSecret} from './rest'
+import {userSubject, secretSubject, login, logout, saveSecret, verify} from './rest'
 import contentHtml from 'html!./content.html'
 
 document.body.innerHTML = contentHtml
@@ -31,7 +31,7 @@ Rx.Observable.fromEvent(document.querySelector("#login-button"), 'click')
 
 
 const secretInput = document.querySelector('#secret-input')
-secretSubject.subscribe(secret =>  secretInput.value = secret)
+secretSubject.subscribe(secret => secretInput.value = secret)
 Rx.Observable.fromEvent(secretInput, 'keyup')
     .debounce(300)
     .distinctUntilChanged()
@@ -41,9 +41,16 @@ Rx.Observable.fromEvent(secretInput, 'keyup')
 
 Rx.Observable.fromEvent(document.querySelector('#logout-button'), 'click')
     .subscribe(() => {
-        logout()
-        secretInput.value = ''
-        userDiv.style.display = 'none'
-        secretDiv.style.display = 'none'
-        loginDiv.style.display = 'block'
+        gapi.auth2.getAuthInstance().signOut().then(function () {
+            logout()
+            secretInput.value = ''
+            userDiv.style.display = 'none'
+            secretDiv.style.display = 'none'
+            loginDiv.style.display = 'block'
+        })
     })
+
+window.onSignIn = function onSignIn(googleUser) {
+    let token = googleUser.getAuthResponse().id_token;
+    verify(token)
+}
