@@ -4,8 +4,9 @@ Simple Spring Boot app using Spark Framework to create RESTful services.
 ## Installation
 
 1. Install nodejs and maven
-2. `mvn clean package`
-3. `java -jar target/app.jar`
+2. `npm install -g webpack`
+3. `mvn clean package`
+4. `java -jar target/app.jar`
 
 ## Frontend development
 Follow the steps below to run the webpack dev server. The webapp will refresh automatically when changes are made to the source code. All requests to /api will be routed to http://localhost:4567
