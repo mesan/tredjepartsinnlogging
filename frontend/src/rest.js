@@ -28,13 +28,6 @@ getUser()
 export const userSubject = new Rx.Subject()
 export const secretSubject = new Rx.Subject()
 
-export const login = username =>
-    fetch('/api/login', {credentials: 'include', method: 'POST', body: username})
-        .then(res => {
-            if (res.status === 204)
-                getUser()
-        })
-
 export const saveSecret = secret =>
     fetch('/api/secret', {credentials: 'include', method: 'PUT', body: secret})
 

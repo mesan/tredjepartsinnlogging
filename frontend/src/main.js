@@ -20,18 +20,8 @@ userSubject.subscribe(username => {
     loginDiv.style.display = 'none'
 })
 
-
-const usernameInput = document.querySelector("#username-input")
-Rx.Observable.fromEvent(document.querySelector("#login-button"), 'click')
-    .subscribe((event) => {
-        event.preventDefault()
-        login(usernameInput.value)
-        usernameInput.value = ''
-    })
-
-
 const secretInput = document.querySelector('#secret-input')
-secretSubject.subscribe(secret =>  secretInput.value = secret)
+secretSubject.subscribe(secret => secretInput.value = secret)
 Rx.Observable.fromEvent(secretInput, 'keyup')
     .debounce(300)
     .distinctUntilChanged()

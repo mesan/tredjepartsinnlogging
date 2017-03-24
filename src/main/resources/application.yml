@@ -1,2 +1,8 @@
 # Add properties here and inject them into the code with @Value("${parameter-name}")
 # parameter-name: example text
+open-id-connect:
+  google:
+    discovery-document-url: https://accounts.google.com/.well-known/openid-configuration
+    client-id: 241147659016-m5tbp8dgmmmpun4t9415ofvipdthccoi.apps.googleusercontent.com
+    secret:  ae7ftmx7fnLdsX6FNx53S5HI
+    redirect-uri: http://localhost:4567/api/auth/code

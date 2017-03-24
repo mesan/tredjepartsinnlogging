@@ -12,10 +12,6 @@ body, html {
     margin-bottom: 5rem;
 }
 
-.login-form {
-    margin-bottom: 0;
-}
-
 #logged-in-user {
     font-weight: bold;
     margin-right: 3rem;

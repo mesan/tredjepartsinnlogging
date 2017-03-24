@@ -1,5 +1,9 @@
 package com.netcompany.app;
 
+import com.netcompany.app.auth.DiscoveryDocument;
+import com.netcompany.app.auth.OpenIdConnectAuth;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,5 +23,22 @@ public class AppConfig {
         Spark.staticFileLocation("/public");
 
         return args -> services.forEach(SparkService::init);
+    }
+
+    @Bean
+    @Qualifier("google")
+    public OpenIdConnectAuth googleAuth(
+            @Value("${open-id-connect.google.client-id}") final String clientId,
+            @Value("${open-id-connect.google.secret}") final String secret,
+            @Value("${open-id-connect.google.redirect-uri}") final String redirectUri,
+            @Qualifier("google") final DiscoveryDocument discoveryDocument) {
+        return new OpenIdConnectAuth(clientId, secret, redirectUri, discoveryDocument);
+    }
+
+    @Bean
+    @Qualifier("google")
+    public DiscoveryDocument googleDiscoveryDocument(
+            @Value("${open-id-connect.google.discovery-document-url}") final String discoveryDocumentUrl) {
+        return new DiscoveryDocument(discoveryDocumentUrl);
     }
 }
